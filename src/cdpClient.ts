@@ -97,18 +97,10 @@ export class CdpClient {
                     (() => {
                         if (!window._autoAcceptInterval) {
                             window._autoAcceptInterval = setInterval(() => {
-                                const buttons = Array.from(document.querySelectorAll('button, vscode-button'));
-                                const submitBtn = buttons.find(b => {
-                                    const text = (b.textContent || '').trim().toLowerCase();
-                                    return text.includes('submit') || 
-                                           text.includes('allow') || 
-                                           text.includes('onayla') || 
-                                           text.includes('kabul et') || 
-                                           text.includes('proceed') || 
-                                           text.includes('approve') || 
-                                           text.includes('yes') || 
-                                           text.includes('devam et');
-                                });
+                                // Yalnızca yapısal (class) özellikleri ile primary butonu buluyoruz.
+                                // Dil bağımsızdır, sadece tasarım (vurgu rengi ve beyaz yazı) kontrol edilir.
+                                const submitBtn = document.querySelector('button.bg-accent.text-white');
+                                
                                 if (submitBtn && !submitBtn.disabled) {
                                     submitBtn.click();
                                 }
