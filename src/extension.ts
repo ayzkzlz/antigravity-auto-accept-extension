@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
   let panelStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 99);
   panelStatusBarItem.command = 'antigravity-auto-accept.openAdminPanel';
   panelStatusBarItem.text = `$(settings-gear) Auto-Accept Panel`;
-  panelStatusBarItem.tooltip = `Auto-Accept Ayarlarını Aç`;
+  panelStatusBarItem.tooltip = `Open Auto-Accept Settings`;
   panelStatusBarItem.show();
   context.subscriptions.push(panelStatusBarItem);
   
@@ -51,12 +51,12 @@ function updateStatusBarItem() {
   const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
   const isEnabled = config.get<boolean>('enabled');
   if (isEnabled) {
-    statusBarItem.text = `Auto-Accept Kapat`;
-    statusBarItem.tooltip = `Şu an AÇIK. Kapatmak için tıklayın.`;
+    statusBarItem.text = `$(pass-filled) Auto-Accept: ON`;
+    statusBarItem.tooltip = `Currently ENABLED. Click to Disable.`;
     cdpClient.start();
   } else {
-    statusBarItem.text = `Auto-Accept Aç`;
-    statusBarItem.tooltip = `Şu an KAPALI. Açmak için tıklayın.`;
+    statusBarItem.text = `$(circle-large) Auto-Accept: OFF`;
+    statusBarItem.tooltip = `Currently DISABLED. Click to Enable.`;
     cdpClient.stop();
   }
   statusBarItem.show();
