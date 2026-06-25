@@ -62,7 +62,7 @@ function updateStatusBarItem() {
   statusBarItem.show();
   
   if (AdminPanel.currentPanel) {
-    AdminPanel.currentPanel.updateState(isEnabled);
+    AdminPanel.currentPanel.updateState(!!isEnabled);
   }
 }
 
