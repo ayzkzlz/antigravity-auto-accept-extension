@@ -20,10 +20,18 @@ export function activate(context: vscode.ExtensionContext) {
     config.update('enabled', !currentState, vscode.ConfigurationTarget.Global);
   });
 
-  // Status Bar Item
+  // Status Bar Item (Toggle)
   statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
   statusBarItem.command = 'antigravity-auto-accept.toggle';
   context.subscriptions.push(statusBarItem);
+  
+  // Status Bar Item (Panel)
+  let panelStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 99);
+  panelStatusBarItem.command = 'antigravity-auto-accept.openAdminPanel';
+  panelStatusBarItem.text = `$(settings-gear) Auto-Accept Panel`;
+  panelStatusBarItem.tooltip = `Auto-Accept Ayarlarını Aç`;
+  panelStatusBarItem.show();
+  context.subscriptions.push(panelStatusBarItem);
   
   cdpClient = new CdpClient();
   
