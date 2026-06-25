@@ -9,15 +9,36 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
         "command": "antigravity-auto-accept.openAdminPanel",
         "title": "Auto-Accept: Open Admin Panel"
+      },
+      {
+        "command": "antigravity-auto-accept.toggle",
+        "title": "Auto-Accept: Toggle Enable/Disable"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Antigravity Auto-Accept",
+      "properties": {
+        "antigravity-auto-accept.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable auto-accept functionality"
+        },
+        "antigravity-auto-accept.delay": {
+          "type": "number",
+          "default": 1000,
+          "description": "Delay in milliseconds before auto-accepting"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -26,8 +47,12 @@
     "pretest": "npm run compile && npm run lint"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
     "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@types/ws": "^8.18.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "ws": "^8.21.0"
   }
 }

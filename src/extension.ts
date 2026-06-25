@@ -1,18 +1,61 @@
 import * as vscode from 'vscode';
 import { AdminPanel } from './panels/AdminPanel';
+import { CdpClient } from './cdpClient';
+
+let statusBarItem: vscode.StatusBarItem;
+let cdpClient: CdpClient;
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Antigravity Auto-Accept is now active!');
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand('antigravity-auto-accept.openAdminPanel', () => {
-    // Reveal or create the admin panel
+  // Open Panel Command
+  let openPanelDisposable = vscode.commands.registerCommand('antigravity-auto-accept.openAdminPanel', () => {
     AdminPanel.render(context.extensionUri);
   });
 
-  context.subscriptions.push(disposable);
+  // Toggle Command
+  let toggleDisposable = vscode.commands.registerCommand('antigravity-auto-accept.toggle', () => {
+    const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+    const currentState = config.get<boolean>('enabled');
+    config.update('enabled', !currentState, vscode.ConfigurationTarget.Global);
+  });
+
+  // Status Bar Item
+  statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+  statusBarItem.command = 'antigravity-auto-accept.toggle';
+  context.subscriptions.push(statusBarItem);
+  
+  cdpClient = new CdpClient();
+  
+  updateStatusBarItem();
+
+  // Listen for configuration changes
+  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(e => {
+    if (e.affectsConfiguration('antigravity-auto-accept.enabled')) {
+      updateStatusBarItem();
+    }
+  }));
+
+  context.subscriptions.push(openPanelDisposable, toggleDisposable);
 }
 
-export function deactivate() {}
+function updateStatusBarItem() {
+  const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+  const isEnabled = config.get<boolean>('enabled');
+  if (isEnabled) {
+    statusBarItem.text = `Auto-Accept Kapat`;
+    statusBarItem.tooltip = `Şu an AÇIK. Kapatmak için tıklayın.`;
+    cdpClient.start();
+  } else {
+    statusBarItem.text = `Auto-Accept Aç`;
+    statusBarItem.tooltip = `Şu an KAPALI. Açmak için tıklayın.`;
+    cdpClient.stop();
+  }
+  statusBarItem.show();
+}
+
+export function deactivate() {
+    if (cdpClient) {
+        cdpClient.stop();
+    }
+}

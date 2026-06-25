@@ -22,7 +22,10 @@ export class AdminPanel {
       message => {
         switch (message.command) {
           case 'saveSettings':
-            vscode.window.showInformationMessage(`Auto-Accept Settings Saved: Delay ${message.delay}ms, Enabled: ${message.enabled}`);
+            const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+            config.update('enabled', message.enabled, vscode.ConfigurationTarget.Global);
+            config.update('delay', Number(message.delay), vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Auto-Accept Settings Saved!`);
             return;
         }
       },
@@ -74,6 +77,16 @@ export class AdminPanel {
     
     try {
       htmlContent = fs.readFileSync(htmlPath, 'utf8');
+      
+      // Inject current settings
+      const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+      const delay = config.get<number>('delay', 1000);
+      const enabled = config.get<boolean>('enabled', true);
+      
+      htmlContent = htmlContent.replace('id="delayInput" value="1000"', `id="delayInput" value="${delay}"`);
+      if (!enabled) {
+        htmlContent = htmlContent.replace('id="enabledSwitch" checked', 'id="enabledSwitch"');
+      }
     } catch (e) {
       htmlContent = `<h1>Error loading admin panel UI</h1>`;
     }

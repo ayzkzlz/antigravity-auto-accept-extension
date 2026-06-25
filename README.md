@@ -18,6 +18,7 @@ Bu projenin sıfırdan oluşturulması sürecinde aşağıdaki AI (Antigravity) 
 ## Kurulum ve Çalıştırma
 
 1. Proje dizininde `npm install` komutunu çalıştırın.
-2. F5 tuşuna basarak (veya Debug panelinden "Run Extension" seçerek) Extension Development Host penceresini açın.
-3. Komut paletini (`Ctrl+Shift+P` / `Cmd+Shift+P`) açın.
-4. `Auto-Accept: Open Admin Panel` komutunu çalıştırarak yönetim panelini görüntüleyin.
+2. Sol taraftaki menüden **Run and Debug** (Çalıştır ve Hata Ayıkla) sekmesine gidin (veya `Cmd+Shift+D` yapın).
+3. Üstteki yeşil oynat butonuna basarak ("Run Extension" seçiliyken) Extension Development Host penceresini açın. (Mac'te Touch Bar veya klavye ayarlarına bağlı olarak `fn + F5` de yapabilirsiniz).
+4. Komut paletini (`Cmd+Shift+P`) açın.
+5. `Auto-Accept: Open Admin Panel` komutunu çalıştırarak yönetim panelini görüntüleyin.
