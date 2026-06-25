@@ -60,6 +60,10 @@ function updateStatusBarItem() {
     cdpClient.stop();
   }
   statusBarItem.show();
+  
+  if (AdminPanel.currentPanel) {
+    AdminPanel.currentPanel.updateState(isEnabled);
+  }
 }
 
 export function deactivate() {

@@ -31,6 +31,7 @@
             color: var(--vscode-input-foreground);
             border: 1px solid var(--vscode-input-border);
             border-radius: 4px;
+            margin-bottom: 20px;
         }
         button {
             background: var(--vscode-button-background);
@@ -40,15 +41,42 @@
             cursor: pointer;
             border-radius: 4px;
             font-size: 14px;
+            margin-right: 10px;
         }
         button:hover {
-            background: var(--vscode-button-hoverBackground);
+            opacity: 0.9;
         }
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .btn-success {
+            background: #238636;
+            color: #ffffff;
+        }
+        .btn-danger {
+            background: #da3633;
+            color: #ffffff;
+        }
+        .btn-secondary {
+            background: var(--vscode-button-secondaryBackground);
+            color: var(--vscode-button-secondaryForeground);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
             margin-bottom: 20px;
+        }
+        .status-on {
+            background: #238636;
+            color: white;
+        }
+        .status-off {
+            background: #da3633;
+            color: white;
+        }
+        .action-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -56,13 +84,15 @@
     <h1>Auto-Accept Administration</h1>
     <p>Configure the behavior of the Auto-Accept plugin.</p>
     
-    <div class="toggle-container">
-        <label for="enabledSwitch" style="margin-bottom: 0;">Enable Auto-Accept:</label>
-        <input type="checkbox" id="enabledSwitch" checked>
+    <div id="statusBadge" class="status-badge status-on">Status: ON</div>
+    
+    <div class="action-container">
+        <button id="enableBtn" class="btn-success">Start Auto-Accept</button>
+        <button id="disableBtn" class="btn-danger">Stop Auto-Accept</button>
     </div>
     
     <p style="font-size: 12px; color: var(--vscode-descriptionForeground);">
-        <em>Note: This extension requires Antigravity IDE to be launched with <code>--remote-debugging-port=9000</code>. Use the provided <code>ag-switch</code> scripts to toggle this automatically.</em>
+        <em>Note: This extension requires Antigravity IDE to be launched with <code>--remote-debugging-port=9000</code>.</em>
     </p>
 
     <div class="form-group">
@@ -70,20 +100,48 @@
         <input type="number" id="delayInput" value="1000" min="0" step="100">
     </div>
 
-    <button id="saveBtn">Save Settings</button>
+    <button id="saveDelayBtn" class="btn-secondary">Save Delay Settings</button>
 
     <script>
         const vscode = acquireVsCodeApi();
+        
+        let isEnabled = /*INJECT_ENABLED*/true/*END_INJECT*/;
 
-        document.getElementById('saveBtn').addEventListener('click', () => {
+        function updateUI(enabled) {
+            isEnabled = enabled;
+            const badge = document.getElementById('statusBadge');
+            if (enabled) {
+                badge.textContent = 'Status: ON';
+                badge.className = 'status-badge status-on';
+            } else {
+                badge.textContent = 'Status: OFF';
+                badge.className = 'status-badge status-off';
+            }
+        }
+
+        // Initialize state
+        updateUI(isEnabled);
+        
+        document.getElementById('enableBtn').addEventListener('click', () => {
+            updateUI(true);
+            vscode.postMessage({ command: 'setEnabled', enabled: true });
+        });
+        
+        document.getElementById('disableBtn').addEventListener('click', () => {
+            updateUI(false);
+            vscode.postMessage({ command: 'setEnabled', enabled: false });
+        });
+
+        document.getElementById('saveDelayBtn').addEventListener('click', () => {
             const delay = document.getElementById('delayInput').value;
-            const enabled = document.getElementById('enabledSwitch').checked;
-            
-            vscode.postMessage({
-                command: 'saveSettings',
-                delay: delay,
-                enabled: enabled
-            });
+            vscode.postMessage({ command: 'setDelay', delay: delay });
+        });
+        
+        window.addEventListener('message', event => {
+            const message = event.data;
+            if (message.command === 'updateState') {
+                updateUI(message.enabled);
+            }
         });
     </script>
 </body>

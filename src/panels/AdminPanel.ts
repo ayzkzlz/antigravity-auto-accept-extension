@@ -20,12 +20,15 @@ export class AdminPanel {
     // Handle messages from the webview
     this._panel.webview.onDidReceiveMessage(
       message => {
+        const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
         switch (message.command) {
-          case 'saveSettings':
-            const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+          case 'setEnabled':
             config.update('enabled', message.enabled, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Auto-Accept is now ${message.enabled ? 'ON' : 'OFF'}`);
+            return;
+          case 'setDelay':
             config.update('delay', Number(message.delay), vscode.ConfigurationTarget.Global);
-            vscode.window.showInformationMessage(`Auto-Accept Settings Saved!`);
+            vscode.window.showInformationMessage(`Auto-Accept Delay Saved!`);
             return;
         }
       },
@@ -56,6 +59,10 @@ export class AdminPanel {
     }
   }
 
+  public updateState(enabled: boolean) {
+    this._panel.webview.postMessage({ command: 'updateState', enabled });
+  }
+
   public dispose() {
     AdminPanel.currentPanel = undefined;
 
@@ -84,9 +91,7 @@ export class AdminPanel {
       const enabled = config.get<boolean>('enabled', true);
       
       htmlContent = htmlContent.replace('id="delayInput" value="1000"', `id="delayInput" value="${delay}"`);
-      if (!enabled) {
-        htmlContent = htmlContent.replace('id="enabledSwitch" checked', 'id="enabledSwitch"');
-      }
+      htmlContent = htmlContent.replace('/*INJECT_ENABLED*/true/*END_INJECT*/', enabled.toString());
     } catch (e) {
       htmlContent = `<h1>Error loading admin panel UI</h1>`;
     }
