@@ -1,0 +1,33 @@
+{
+  "name": "antigravity-auto-accept",
+  "displayName": "Antigravity Auto-Accept",
+  "description": "An auto-accept plugin with a management panel for Antigravity IDE",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antigravity-auto-accept.openAdminPanel",
+        "title": "Auto-Accept: Open Admin Panel"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^5.3.3"
+  }
+}

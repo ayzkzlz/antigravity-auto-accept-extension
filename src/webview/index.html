@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Accept Administration</title>
+    <style>
+        body {
+            font-family: var(--vscode-font-family);
+            color: var(--vscode-editor-foreground);
+            background-color: var(--vscode-editor-background);
+            padding: 20px;
+        }
+        h1 {
+            color: var(--vscode-editor-foreground);
+            border-bottom: 1px solid var(--vscode-panel-border);
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            background: var(--vscode-input-background);
+            color: var(--vscode-input-foreground);
+            border: 1px solid var(--vscode-input-border);
+            border-radius: 4px;
+        }
+        button {
+            background: var(--vscode-button-background);
+            color: var(--vscode-button-foreground);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button:hover {
+            background: var(--vscode-button-hoverBackground);
+        }
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Auto-Accept Administration</h1>
+    <p>Configure the behavior of the Auto-Accept plugin.</p>
+    
+    <div class="toggle-container">
+        <label for="enabledSwitch" style="margin-bottom: 0;">Enable Auto-Accept:</label>
+        <input type="checkbox" id="enabledSwitch" checked>
+    </div>
+
+    <div class="form-group">
+        <label for="delayInput">Auto-Accept Delay (ms):</label>
+        <input type="number" id="delayInput" value="1000" min="0" step="100">
+    </div>
+
+    <button id="saveBtn">Save Settings</button>
+
+    <script>
+        const vscode = acquireVsCodeApi();
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const delay = document.getElementById('delayInput').value;
+            const enabled = document.getElementById('enabledSwitch').checked;
+            
+            vscode.postMessage({
+                command: 'saveSettings',
+                delay: delay,
+                enabled: enabled
+            });
+        });
+    </script>
+</body>
+</html>
