@@ -27,11 +27,28 @@ export class CdpClient {
             this.checkInterval = null;
         }
 
-        // Tüm açık websocketleri kapat
-        for (const [id, ws] of this.activeSockets.entries()) {
+        // Tarayıcılara yerleştirdiğimiz tıklayıcı interval'i silmeleri için kod gönder
+        const stopScript = `
+            if (window._autoAcceptInterval) {
+                clearInterval(window._autoAcceptInterval);
+                delete window._autoAcceptInterval;
+            }
+        `;
+        const message = JSON.stringify({
+            id: Math.floor(Math.random() * 1000000),
+            method: 'Runtime.evaluate',
+            params: { expression: stopScript }
+        });
+
+        // Tüm aktif soketlere durdurma emrini gönder ve soketleri kapat
+        this.activeSockets.forEach(ws => {
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(message);
+            }
             ws.close();
-        }
+        });
         this.activeSockets.clear();
+
         vscode.window.showInformationMessage('Auto-Accept durduruldu.');
     }
 
