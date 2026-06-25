@@ -98,6 +98,8 @@ export class CdpClient {
 
                 const script = `
                     (() => {
+                        window._allowDangerousCommands = ${allowDangerous};
+                        
                         if (!window._autoAcceptInterval) {
                             window._autoAcceptInterval = setInterval(() => {
                                 // 1. Önce yapısal (class) özellikleri ile primary butonu arıyoruz
@@ -142,7 +144,7 @@ export class CdpClient {
                                 
                                 if (targetBtn && !targetBtn.disabled) {
                                     // GÜVENLİK KONTROLÜ (Blacklist)
-                                    const allowDangerous = ${allowDangerous};
+                                    const allowDangerous = window._allowDangerousCommands;
                                     const commandArea = document.querySelector('textarea[aria-label="Edit permission target"]');
                                     
                                     if (commandArea && !allowDangerous) {
