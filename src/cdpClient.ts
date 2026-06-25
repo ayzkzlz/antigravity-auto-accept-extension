@@ -97,12 +97,48 @@ export class CdpClient {
                     (() => {
                         if (!window._autoAcceptInterval) {
                             window._autoAcceptInterval = setInterval(() => {
-                                // Yalnızca yapısal (class) özellikleri ile primary butonu buluyoruz.
-                                // Dil bağımsızdır, sadece tasarım (vurgu rengi ve beyaz yazı) kontrol edilir.
-                                const submitBtn = document.querySelector('button.bg-accent.text-white');
+                                // 1. Önce yapısal (class) özellikleri ile primary butonu arıyoruz
+                                let targetBtn = document.querySelector('button.bg-accent.text-white');
                                 
-                                if (submitBtn && !submitBtn.disabled) {
-                                    submitBtn.click();
+                                // 2. Bulunamazsa ikincil (fallback) metin araması devreye girer
+                                if (!targetBtn) {
+                                    const buttons = Array.from(document.querySelectorAll('button, vscode-button'));
+                                    
+                                    // Sık kullanılan onay kelimeleri (Farklı dilleri destekler)
+                                    const keywords = [
+                                        // English
+                                        'submit', 'allow', 'yes', 'proceed', 'approve', 'continue', 'run',
+                                        // Turkish
+                                        'onayla', 'kabul et', 'gönder', 'devam et', 'evet', 'çalıştır',
+                                        // German
+                                        'senden', 'erlauben', 'ja', 'fortfahren', 'zulassen', 'bestätigen',
+                                        // French
+                                        'soumettre', 'autoriser', 'oui', 'continuer', 'approuver', 'valider',
+                                        // Spanish
+                                        'enviar', 'permitir', 'sí', 'continuar', 'aprobar', 'aceptar',
+                                        // Italian
+                                        'invia', 'consenti', 'sì', 'continua', 'approva', 'accetta',
+                                        // Portuguese
+                                        'sim', 'aprovar', 'aceitar',
+                                        // Russian
+                                        'отправить', 'разрешить', 'да', 'продолжить', 'одобрить', 'принять',
+                                        // Japanese
+                                        '送信', '許可', 'はい', '続行', '承認', '受け入れる',
+                                        // Chinese
+                                        '提交', '允许', '是', '继续', '批准', '接受'
+                                    ];
+                                    
+                                    targetBtn = buttons.find(b => {
+                                        // Metni alıp temizle (Örn: "Submit ↵" -> "submit")
+                                        const text = (b.textContent || '').trim().toLowerCase().replace(/↵/g, '').trim();
+                                        
+                                        // Tam eşleşme veya kelime başlangıcı eşleşmesi arar ("Don't allow" gibi ters eşleşmeleri önler)
+                                        return keywords.includes(text) || keywords.some(k => text.startsWith(k + ' '));
+                                    });
+                                }
+                                
+                                if (targetBtn && !targetBtn.disabled) {
+                                    targetBtn.click();
                                 }
                             }, 500);
                             return true;
