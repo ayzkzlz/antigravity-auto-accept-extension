@@ -147,9 +147,18 @@ export class CdpClient {
                                     
                                     if (commandArea && !allowDangerous) {
                                         const cmdText = (commandArea.value || commandArea.textContent || '').toLowerCase();
-                                        const blacklist = ['rm -rf', 'sudo', 'mkfs', 'chmod -r', 'chown -r', 'drop table', 'truncate table'];
                                         
-                                        const isDangerous = blacklist.some(badWord => cmdText.includes(badWord));
+                                        const dangerousRegexes = [
+                                            /(?:^|\\s)rm(?:$|\\s)/i,
+                                            /(?:^|\\s)sudo(?:$|\\s)/i,
+                                            /(?:^|\\s)mkfs(?:$|\\s)/i,
+                                            /chmod\\s+-r/i,
+                                            /chown\\s+-r/i,
+                                            /drop\\s+table/i,
+                                            /truncate\\s+table/i
+                                        ];
+                                        
+                                        const isDangerous = dangerousRegexes.some(regex => regex.test(cmdText));
                                         
                                         if (isDangerous) {
                                             // Tehlikeli komut algılandı ve ayarlardan izin verilmemiş!
