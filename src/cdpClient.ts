@@ -93,6 +93,9 @@ export class CdpClient {
             const injectScript = () => {
                 if (ws.readyState !== WebSocket.OPEN) return;
 
+                const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
+                const allowDangerous = config.get<boolean>('allowDangerousCommands', false);
+
                 const script = `
                     (() => {
                         if (!window._autoAcceptInterval) {
@@ -138,6 +141,23 @@ export class CdpClient {
                                 }
                                 
                                 if (targetBtn && !targetBtn.disabled) {
+                                    // GÜVENLİK KONTROLÜ (Blacklist)
+                                    const allowDangerous = ${allowDangerous};
+                                    const commandArea = document.querySelector('textarea[aria-label="Edit permission target"]');
+                                    
+                                    if (commandArea && !allowDangerous) {
+                                        const cmdText = (commandArea.value || commandArea.textContent || '').toLowerCase();
+                                        const blacklist = ['rm -rf', 'sudo', 'mkfs', 'chmod -r', 'chown -r', 'drop table', 'truncate table'];
+                                        
+                                        const isDangerous = blacklist.some(badWord => cmdText.includes(badWord));
+                                        
+                                        if (isDangerous) {
+                                            // Tehlikeli komut algılandı ve ayarlardan izin verilmemiş!
+                                            // Tıklama yapmadan döngüden çık, insan onayını bekle.
+                                            return;
+                                        }
+                                    }
+                                
                                     targetBtn.click();
                                 }
                             }, 500);

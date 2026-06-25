@@ -100,7 +100,14 @@
         <input type="number" id="delayInput" value="1000" min="0" step="100">
     </div>
 
-    <button id="saveDelayBtn" class="btn-secondary">Save Delay Settings</button>
+    <div class="form-group" style="display: flex; align-items: center; margin-bottom: 20px;">
+        <input type="checkbox" id="allowDangerousCheckbox" style="width: auto; margin: 0 10px 0 0;" /*INJECT_CHECKED*/>
+        <label for="allowDangerousCheckbox" style="margin: 0; font-weight: normal; cursor: pointer;">
+            Allow Dangerous Commands (e.g. rm -rf)
+        </label>
+    </div>
+
+    <button id="saveDelayBtn" class="btn-secondary">Save Settings</button>
 
     <script>
         const vscode = acquireVsCodeApi();
@@ -135,6 +142,9 @@
         document.getElementById('saveDelayBtn').addEventListener('click', () => {
             const delay = document.getElementById('delayInput').value;
             vscode.postMessage({ command: 'setDelay', delay: delay });
+            
+            const isDangerous = document.getElementById('allowDangerousCheckbox').checked;
+            vscode.postMessage({ command: 'setAllowDangerousCommands', enabled: isDangerous });
         });
         
         window.addEventListener('message', event => {

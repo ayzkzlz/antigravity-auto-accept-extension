@@ -36,6 +36,11 @@
           "type": "number",
           "default": 1000,
           "description": "Delay in milliseconds before auto-accepting"
+        },
+        "antigravity-auto-accept.allowDangerousCommands": {
+          "type": "boolean",
+          "default": false,
+          "description": "If enabled, automatically approves dangerous commands like 'rm -rf'"
         }
       }
     }

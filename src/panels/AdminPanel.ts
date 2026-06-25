@@ -30,6 +30,10 @@ export class AdminPanel {
             config.update('delay', Number(message.delay), vscode.ConfigurationTarget.Global);
             vscode.window.showInformationMessage(`Auto-Accept Delay Saved!`);
             return;
+          case 'setAllowDangerousCommands':
+            config.update('allowDangerousCommands', message.enabled, vscode.ConfigurationTarget.Global);
+            vscode.window.showInformationMessage(`Dangerous Commands Auto-Accept is now ${message.enabled ? 'ALLOWED' : 'BLOCKED'}`);
+            return;
         }
       },
       null,
@@ -89,9 +93,11 @@ export class AdminPanel {
       const config = vscode.workspace.getConfiguration('antigravity-auto-accept');
       const delay = config.get<number>('delay', 1000);
       const enabled = config.get<boolean>('enabled', true);
+      const allowDangerous = config.get<boolean>('allowDangerousCommands', false);
       
       htmlContent = htmlContent.replace('id="delayInput" value="1000"', `id="delayInput" value="${delay}"`);
       htmlContent = htmlContent.replace('/*INJECT_ENABLED*/true/*END_INJECT*/', enabled.toString());
+      htmlContent = htmlContent.replace('/*INJECT_CHECKED*/', allowDangerous ? 'checked' : '');
     } catch (e) {
       htmlContent = `<h1>Error loading admin panel UI</h1>`;
     }
