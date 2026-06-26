@@ -33,6 +33,11 @@ To make sure Antigravity IDE always launches with the correct port, we provide s
 1. In the extracted folder, double-click the **`setup-mac.command`** file.
 2. A new application named **`Antigravity with Auto Accept.app`** will be created on your Desktop.
 3. *(If macOS prevents it from running, right-click the file and select "Open").*
+4. **Permission Denied Error?** If you get a permission or access error, you can fix it manually via Terminal:
+   - Open Terminal.
+   - Type `chmod +x ` (with a space at the end).
+   - Drag and drop the `setup-mac.command` file into the Terminal window and press Enter.
+   - Double-click the file again.
 
 **🪟 For Windows Users:**
 1. In the extracted folder, double-click the **`setup-windows.cmd`** file.
@@ -77,6 +82,11 @@ IDE'nin her zaman doğru portla açıldığından emin olmak için size tek tık
 1. Zip'ten çıkardığınız klasörün içindeki **`setup-mac.command`** dosyasına çift tıklayın.
 2. Masaüstünüzde **`Antigravity with Auto Accept.app`** isminde yeni bir uygulama oluşacaktır.
 3. *(Eğer macOS güvenlik nedeniyle çalıştırmanızı engellerse, dosyaya sağ tıklayıp "Aç" seçeneğini seçin).*
+4. **Erişim Engellendi (Permission Denied) Hatası Alırsanız:** Dosya izinlerini Terminal üzerinden manuel olarak çözebilirsiniz:
+   - Terminal uygulamasını açın.
+   - Terminale `chmod +x ` yazın (sonunda boşluk bıraktığınızdan emin olun).
+   - Klasördeki `setup-mac.command` dosyasını farenizle tutup Terminal penceresinin içine sürükleyip bırakın ve Enter tuşuna basın.
+   - Ardından dosyaya tekrar çift tıklayarak sorunsuz çalıştırabilirsiniz.
 
 **🪟 Windows Kullanıcıları İçin:**
 1. Zip'ten çıkardığınız klasörün içindeki **`setup-windows.cmd`** dosyasına çift tıklayın.
