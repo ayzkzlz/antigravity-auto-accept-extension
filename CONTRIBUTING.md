@@ -34,9 +34,16 @@ Before you begin, ensure you have the following installed:
    ```
    *Alternatively, run `npm run watch` to automatically recompile your code upon saving.*
 
+4. **Package a Release:**
+   To build a production-ready Standalone Installer `.zip` package, simply run the build script:
+   ```bash
+   ./build-release.sh
+   ```
+   This automates the compilation, `.vsix` generation, and packaging of the setup scripts into `Antigravity-AutoAccept-Installer.zip`.
+
 ### Testing the Extension
 
-To test the extension locally without building a `.vsix` package:
+To test the extension locally without building a `.zip` or `.vsix` package:
 1. Open the project folder in Antigravity IDE.
 2. Go to the **Run and Debug** view (`Cmd+Shift+D` or `Ctrl+Shift+D`).
 3. Click the green **Run Extension** button (or press `F5`).
@@ -82,9 +89,16 @@ Başlamadan önce sisteminizde şunların yüklü olduğundan emin olun:
    ```
    *Alternatif olarak, kodunuzu kaydettiğinizde otomatik derlenmesi için `npm run watch` komutunu kullanabilirsiniz.*
 
+4. **Nihai Paketi (Release) Oluşturun:**
+   Kullanıcılara dağıtılacak `Antigravity-AutoAccept-Installer.zip` paketini oluşturmak için derleme betiğini çalıştırmanız yeterlidir:
+   ```bash
+   ./build-release.sh
+   ```
+   Bu betik, kodu derler, `.vsix` dosyasını oluşturur ve kurulum scriptleriyle birleştirip otomatik bir zip arşivi hazırlar.
+
 ### Eklentiyi Test Etme
 
-Eklentiyi `.vsix` paketi oluşturmadan yerel olarak test etmek için:
+Eklentiyi `.zip` veya `.vsix` paketi oluşturmadan yerel olarak test etmek için:
 1. Proje klasörünü Antigravity IDE'de açın.
 2. **Çalıştır ve Hata Ayıkla (Run and Debug)** sekmesine gidin (`Cmd+Shift+D` veya `Ctrl+Shift+D`).
 3. Yeşil **Run Extension** butonuna tıklayın (veya `F5`'e basın).

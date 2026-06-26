@@ -16,30 +16,18 @@ Welcome to the **Antigravity Auto-Accept** extension for Antigravity IDE (VS Cod
 
 ### Installation
 
-To function properly, this extension requires Antigravity IDE to run with the Chrome DevTools Protocol enabled (`--remote-debugging-port=9000`). We provide automated scripts to make this seamless for you.
+To function properly, this extension requires Antigravity IDE to run with the Chrome DevTools Protocol enabled (`--remote-debugging-port=9000`). We provide a standalone installer to make this seamless for you.
 
-#### Step 1: Install the Extension
+#### Quick Setup
 1. Go to the [Releases](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) page on GitHub.
-2. Download the latest `.vsix` file (e.g., `v1.0.0`).
-3. Open Antigravity IDE, go to the **Extensions** view (`Cmd+Shift+X` or `Ctrl+Shift+X`).
-4. Click the `...` menu at the top right and select **Install from VSIX...**.
-5. Choose the downloaded `.vsix` file.
-
-#### Step 2: Create the Dedicated Shortcut (Required)
-To automatically enable the required debugging port, please run the setup script for your Operating System:
-
-- **macOS Users:**
-  Open your Terminal, navigate to the folder where you downloaded the extension scripts, and run:
-  ```bash
-  sh setup-mac.sh
-  ```
-  This will create a dedicated `Antigravity with Auto Accept.app` on your Desktop. You can drag this to your Dock. **Always launch the IDE using this app to use the extension.**
-
-- **Windows Users:**
-  Right-click the `setup-windows.ps1` file and select **Run with PowerShell**. A shortcut named `Antigravity with Auto Accept.lnk` will appear on your Desktop. **Always launch the IDE using this shortcut to use the extension.**
+2. Download the latest `Antigravity-AutoAccept-Installer.zip` and extract it.
+3. Run the setup script for your Operating System:
+   - **macOS Users:** Open Terminal, navigate to the extracted folder, and run `./setup-mac.sh`.
+   - **Windows Users:** Right-click `setup-windows.ps1` and select **Run with PowerShell**.
+4. The script will automatically install the extension into your IDE and create an `Antigravity with Auto Accept` shortcut on your Desktop.
 
 ### Usage
-1. Launch Antigravity IDE via your newly created **Antigravity with Auto Accept** shortcut.
+1. **Always launch Antigravity IDE via your newly created shortcut.**
 2. The extension will start automatically. Look for the `🟢 Auto-Accept: ON` indicator in your Status Bar.
 3. Click the Status Bar indicator, or open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) and type `Auto-Accept: Open Admin Panel` to configure your delay and security settings.
 
@@ -60,30 +48,18 @@ Antigravity IDE (VS Code) için geliştirilmiş **Antigravity Auto-Accept** ekle
 
 ### Kurulum
 
-Bu eklentinin çalışabilmesi için Antigravity IDE'nin Chrome DevTools Protocol (`--remote-debugging-port=9000`) parametresi ile başlatılması zorunludur. İşinizi kolaylaştırmak adına size otomatik kurulum betikleri sunuyoruz.
+Bu eklentinin çalışabilmesi için Antigravity IDE'nin Chrome DevTools Protocol (`--remote-debugging-port=9000`) parametresi ile başlatılması zorunludur. İşinizi kolaylaştırmak adına size otomatik bir kurulum paketi sunuyoruz.
 
-#### Adım 1: Eklentiyi Yükleyin
+#### Hızlı Kurulum
 1. GitHub üzerindeki [Releases (Sürümler)](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) sayfasına gidin.
-2. En güncel `.vsix` dosyasını indirin (Örn: `v1.0.0`).
-3. Antigravity IDE'yi açın ve **Eklentiler (Extensions)** sekmesine gidin (`Cmd+Shift+X` veya `Ctrl+Shift+X`).
-4. Sağ üstteki `...` (üç nokta) menüsüne tıklayın ve **VSIX'ten Yükle... (Install from VSIX...)** seçeneğini seçin.
-5. İndirdiğiniz `.vsix` dosyasını seçip kurulumu tamamlayın.
-
-#### Adım 2: Özel Kısayolu Oluşturun (Zorunlu)
-IDE'nin gerekli port ayarlarıyla açılabilmesi için işletim sisteminize uygun olan aşağıdaki kurulum betiklerini (script) çalıştırarak masaüstünüze hazır bir kısayol oluşturmalısınız:
-
-- **macOS Kullanıcıları:**
-  Terminali açın, scriptlerin bulunduğu dizine gidin ve şu komutu çalıştırın:
-  ```bash
-  sh setup-mac.sh
-  ```
-  Masaüstünüzde `Antigravity with Auto Accept.app` uygulaması oluşacaktır. İsterseniz bu uygulamayı Dock'a sürükleyebilirsiniz. **Eklentiyi kullanmak için IDE'yi her zaman bu uygulamadan başlatmalısınız.**
-
-- **Windows Kullanıcıları:**
-  `setup-windows.ps1` dosyasına sağ tıklayıp **"PowerShell ile Çalıştır"** diyerek çalıştırın. Masaüstünüzde `Antigravity with Auto Accept.lnk` kısayolu oluşacaktır. **Eklentiyi kullanmak için IDE'yi her zaman bu kısayoldan başlatmalısınız.**
+2. En güncel `Antigravity-AutoAccept-Installer.zip` dosyasını indirin ve zip'ten çıkarın.
+3. Çıkardığınız klasörün içinden işletim sisteminize uygun olan kurulum betiğini (script) çalıştırın:
+   - **macOS Kullanıcıları:** Terminali açın, klasörün içine girip `./setup-mac.sh` komutunu çalıştırın.
+   - **Windows Kullanıcıları:** `setup-windows.ps1` dosyasına sağ tıklayıp **"PowerShell ile Çalıştır"** seçeneğini seçin.
+4. Kurulum aracı eklentiyi IDE'nize otomatik olarak kuracak ve masaüstünüze **Antigravity with Auto Accept** adında sihirli bir kısayol bırakacaktır.
 
 ### Kullanım
-1. Antigravity IDE'yi yeni oluşturduğunuz **Antigravity with Auto Accept** kısayolu üzerinden başlatın.
+1. **Eklentiyi kullanabilmek için Antigravity IDE'yi HER ZAMAN masaüstündeki bu yeni kısayoldan başlatın.**
 2. Eklenti otomatik olarak devreye girecektir. Sağ alt köşedeki (Durum Çubuğu) `🟢 Auto-Accept: ON` ibaresini kontrol edin.
 3. Ayarlarınızı (gecikme süresi, güvenlik) değiştirmek için durum çubuğundaki bu butona tıklayabilir veya Komut Paleti'ni (`Cmd+Shift+P` / `Ctrl+Shift+P`) açarak `Auto-Accept: Open Admin Panel` yazabilirsiniz.
 
