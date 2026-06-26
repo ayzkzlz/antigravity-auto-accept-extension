@@ -40,6 +40,7 @@ chmod +x "$RELEASE_DIR/setup-mac.command"
 
 # Zip oluştur
 echo "Zipping the release package..."
+rm -f "${RELEASE_DIR}.zip"
 zip -r "${RELEASE_DIR}.zip" "$RELEASE_DIR"
 
 # Temizlik
