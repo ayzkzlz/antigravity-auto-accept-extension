@@ -76,7 +76,7 @@ export class CdpClient {
 
         req.on('error', (e) => {
             if (!this.hasShownError) {
-                vscode.window.showErrorMessage(`CDP Hatası: 9000 portuna bağlanılamadı! (${e.message}). Lütfen launch.json içinde --remote-debugging-port=9000 olduğundan emin olun.`);
+                vscode.window.showErrorMessage(`CDP Kapalı: Lütfen Auto-Accept eklentisini kullanabilmek için IDE'yi 'Antigravity with Auto Accept' kısayolundan başlatın.`);
                 this.hasShownError = true;
             }
         });
