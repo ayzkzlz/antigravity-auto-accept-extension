@@ -6,82 +6,86 @@
 
 ## English
 
-This extension is a tool that runs within the Antigravity IDE (VS Code), providing an administration panel (Webview) and auto-accept functionality.
+Welcome to the **Antigravity Auto-Accept** extension for Antigravity IDE (VS Code). This extension provides a sleek administration panel (Webview) and intelligent auto-accept functionality for background operations.
 
-### AI Skills Used and Reasons
+### Features
+- **Auto-Accept Core**: Automatically approves pending background tasks in Antigravity IDE without interrupting your workflow.
+- **Admin Panel**: A beautiful, modern UI to toggle settings on the fly.
+- **Dangerous Command Blacklist**: Intelligent regex-based detection blocks destructive commands (e.g., `rm`, `sudo`) from being auto-accepted, keeping your system safe.
+- **Background Auto-Updater**: Stays automatically up-to-date with the latest features from GitHub Releases.
 
-The following AI (Antigravity) skills were utilized in building this project from scratch:
+### Installation
 
-1. **`vscode-extension-guide-en`**
-   - **Reason for Use**: Needed for best-practice guidance to establish the project skeleton, Webview architecture (CSP security settings, messaging), and generate the `.vsix` output. Without this skill, it would be difficult to create an extension compatible with the latest (1.74+) VS Code API features.
+To function properly, this extension requires Antigravity IDE to run with the Chrome DevTools Protocol enabled (`--remote-debugging-port=9000`). We provide automated scripts to make this seamless for you.
 
-2. **`typescript-pro`** (Applied implicitly)
-   - **Reason for Use**: Type-safe TypeScript was chosen to ensure the codebase is secure, extensible, and has a low error rate.
+#### Step 1: Install the Extension
+1. Go to the [Releases](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) page on GitHub.
+2. Download the latest `.vsix` file (e.g., `v1.0.0`).
+3. Open Antigravity IDE, go to the **Extensions** view (`Cmd+Shift+X` or `Ctrl+Shift+X`).
+4. Click the `...` menu at the top right and select **Install from VSIX...**.
+5. Choose the downloaded `.vsix` file.
 
-3. **`react-best-practices` / `frontend-design`** (Applied implicitly)
-   - **Reason for Use**: To maintain a high user experience while building the administration panel interface and establish an HTML/CSS structure that aligns with the design aesthetics of Antigravity IDE (VS Code).
-
-### Installation and Usage
-
-#### 1. Shortcut Installation (Recommended)
-For this extension to work, Antigravity IDE must be started with the `--remote-debugging-port=9000` parameter. You can easily create a ready-to-use shortcut on your desktop by running the setup scripts below that correspond to your operating system:
+#### Step 2: Create the Dedicated Shortcut (Required)
+To automatically enable the required debugging port, please run the setup script for your Operating System:
 
 - **macOS Users:**
-  Open the terminal, navigate to this project directory, and run the following command:
+  Open your Terminal, navigate to the folder where you downloaded the extension scripts, and run:
   ```bash
   sh setup-mac.sh
   ```
-  You can start the IDE using the `Antigravity with Auto Accept.app` application created on your desktop. You may drag this application to the Dock if you wish.
+  This will create a dedicated `Antigravity with Auto Accept.app` on your Desktop. You can drag this to your Dock. **Always launch the IDE using this app to use the extension.**
 
 - **Windows Users:**
-  Right-click the `setup-windows.ps1` file in this project directory and select **"Run with PowerShell"**. A shortcut named `Antigravity with Auto Accept.lnk` containing the necessary parameters will be created on your desktop.
+  Right-click the `setup-windows.ps1` file and select **Run with PowerShell**. A shortcut named `Antigravity with Auto Accept.lnk` will appear on your Desktop. **Always launch the IDE using this shortcut to use the extension.**
 
-#### 2. Running the Extension
-1. Run the `npm install` command in the project directory.
-2. Make sure you open the Antigravity IDE using the custom shortcut you created.
-3. Navigate to the **Run and Debug** tab from the left menu.
-4. Click the green play button at the top (while "Run Extension" is selected) to open the Extension Development Host window.
-5. Open the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`).
-6. Run the `Auto-Accept: Open Admin Panel` command to display the administration panel.
+### Usage
+1. Launch Antigravity IDE via your newly created **Antigravity with Auto Accept** shortcut.
+2. The extension will start automatically. Look for the `🟢 Auto-Accept: ON` indicator in your Status Bar.
+3. Click the Status Bar indicator, or open the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P`) and type `Auto-Accept: Open Admin Panel` to configure your delay and security settings.
+
+### For Developers
+If you want to contribute, compile from source, or test changes, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
 
 ---
 
 ## Türkçe
 
-Bu eklenti, Antigravity IDE (VS Code) içerisinde çalışan, yönetim paneli barındıran (Webview) ve otomatik kabul (auto-accept) işlevselliği sunan bir araçtır. 
+Antigravity IDE (VS Code) için geliştirilmiş **Antigravity Auto-Accept** eklentisine hoş geldiniz. Bu eklenti, arka plan işlemlerini otomatik olarak onaylayan akıllı bir altyapı ve şık bir yönetim paneli (Webview) sunar.
 
-### Kullanılan AI Yetenekleri (Skills) ve Nedenleri
+### Özellikler
+- **Otomatik Onay (Auto-Accept)**: Antigravity IDE içindeki bekleyen arka plan görevlerini iş akışınızı bölmeden otomatik olarak onaylar.
+- **Yönetim Paneli (Admin Panel)**: Ayarlarınızı anında değiştirebileceğiniz modern ve kullanıcı dostu bir arayüz.
+- **Tehlikeli Komut Koruması (Blacklist)**: `rm`, `sudo` gibi yıkıcı komutları regex (düzenli ifade) altyapısıyla tespit ederek otomatik onaylanmasını engeller ve sisteminizi korur.
+- **Otomatik Güncelleyici (Auto-Updater)**: GitHub Releases üzerinden her 4 saatte bir güncellemeleri kontrol eder ve eklentinin her zaman en güncel sürümde kalmasını sağlar.
 
-Bu projenin sıfırdan oluşturulması sürecinde aşağıdaki AI (Antigravity) yetenekleri (skills) kullanılmıştır:
+### Kurulum
 
-1. **`vscode-extension-guide-en`**
-   - **Neden Kullanıldı?**: Projenin iskeletini oluşturmak, Webview mimarisini kurmak (CSP güvenlik ayarları, mesajlaşma) ve `.vsix` çıktısı üretebilmek için gereken best-practice rehberliğine ihtiyaç duyulduğu için. Bu yetenek olmadan VS Code API'sinin güncel (1.74+) özelliklerine uygun bir eklenti çıkarmak zorlaşırdı.
+Bu eklentinin çalışabilmesi için Antigravity IDE'nin Chrome DevTools Protocol (`--remote-debugging-port=9000`) parametresi ile başlatılması zorunludur. İşinizi kolaylaştırmak adına size otomatik kurulum betikleri sunuyoruz.
 
-2. **`typescript-pro`** (Zımni olarak uygulandı)
-   - **Neden Kullanıldı?**: Kod tabanının güvenli, genişletilebilir ve hata oranının düşük olması için tip güvenli (type-safe) TypeScript tercih edildi. 
+#### Adım 1: Eklentiyi Yükleyin
+1. GitHub üzerindeki [Releases (Sürümler)](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) sayfasına gidin.
+2. En güncel `.vsix` dosyasını indirin (Örn: `v1.0.0`).
+3. Antigravity IDE'yi açın ve **Eklentiler (Extensions)** sekmesine gidin (`Cmd+Shift+X` veya `Ctrl+Shift+X`).
+4. Sağ üstteki `...` (üç nokta) menüsüne tıklayın ve **VSIX'ten Yükle... (Install from VSIX...)** seçeneğini seçin.
+5. İndirdiğiniz `.vsix` dosyasını seçip kurulumu tamamlayın.
 
-3. **`react-best-practices` / `frontend-design`** (Zımni olarak uygulandı)
-   - **Neden Kullanıldı?**: Yönetim panelinin arayüzü oluşturulurken kullanıcı deneyimini yüksek tutmak ve Antigravity IDE'nin (VS Code) tasarım estetiğine uyumlu bir HTML/CSS yapısı kurmak için.
-
-### Kurulum ve Çalıştırma
-
-#### 1. Kısayol Kurulumu (Önerilen)
-Bu eklentinin çalışabilmesi için Antigravity IDE'nin `--remote-debugging-port=9000` parametresi ile başlatılması zorunludur. İşletim sisteminize uygun olan aşağıdaki kurulum betiklerini (script) çalıştırarak masaüstünüze hazır bir kısayol oluşturabilirsiniz:
+#### Adım 2: Özel Kısayolu Oluşturun (Zorunlu)
+IDE'nin gerekli port ayarlarıyla açılabilmesi için işletim sisteminize uygun olan aşağıdaki kurulum betiklerini (script) çalıştırarak masaüstünüze hazır bir kısayol oluşturmalısınız:
 
 - **macOS Kullanıcıları:**
-  Terminali açın, bu proje dizinine gidin ve şu komutu çalıştırın:
+  Terminali açın, scriptlerin bulunduğu dizine gidin ve şu komutu çalıştırın:
   ```bash
   sh setup-mac.sh
   ```
-  Masaüstünüzde oluşan `Antigravity with Auto Accept.app` uygulamasını kullanarak IDE'yi başlatabilirsiniz. İsterseniz bu uygulamayı Dock'a sürükleyebilirsiniz.
+  Masaüstünüzde `Antigravity with Auto Accept.app` uygulaması oluşacaktır. İsterseniz bu uygulamayı Dock'a sürükleyebilirsiniz. **Eklentiyi kullanmak için IDE'yi her zaman bu uygulamadan başlatmalısınız.**
 
 - **Windows Kullanıcıları:**
-  Bu proje dizinindeki `setup-windows.ps1` dosyasına sağ tıklayıp **"PowerShell ile Çalıştır"** diyerek çalıştırın. Masaüstünüzde gerekli parametreleri içeren `Antigravity with Auto Accept.lnk` kısayolu oluşacaktır.
+  `setup-windows.ps1` dosyasına sağ tıklayıp **"PowerShell ile Çalıştır"** diyerek çalıştırın. Masaüstünüzde `Antigravity with Auto Accept.lnk` kısayolu oluşacaktır. **Eklentiyi kullanmak için IDE'yi her zaman bu kısayoldan başlatmalısınız.**
 
-#### 2. Eklentiyi Çalıştırma
-1. Proje dizininde `npm install` komutunu çalıştırın.
-2. Oluşturduğunuz özel kısayol ile Antigravity IDE'yi açtığınızdan emin olun.
-3. Sol taraftaki menüden **Run and Debug** (Çalıştır ve Hata Ayıkla) sekmesine gidin.
-4. Üstteki yeşil oynat butonuna basarak ("Run Extension" seçiliyken) Extension Development Host penceresini açın. (Mac'te Touch Bar veya klavye ayarlarına bağlı olarak `fn + F5` de yapabilirsiniz).
-5. Komut paletini (`Cmd+Shift+P`) açın.
-6. `Auto-Accept: Open Admin Panel` komutunu çalıştırarak yönetim panelini görüntüleyin.
+### Kullanım
+1. Antigravity IDE'yi yeni oluşturduğunuz **Antigravity with Auto Accept** kısayolu üzerinden başlatın.
+2. Eklenti otomatik olarak devreye girecektir. Sağ alt köşedeki (Durum Çubuğu) `🟢 Auto-Accept: ON` ibaresini kontrol edin.
+3. Ayarlarınızı (gecikme süresi, güvenlik) değiştirmek için durum çubuğundaki bu butona tıklayabilir veya Komut Paleti'ni (`Cmd+Shift+P` / `Ctrl+Shift+P`) açarak `Auto-Accept: Open Admin Panel` yazabilirsiniz.
+
+### Geliştiriciler İçin
+Koda katkıda bulunmak, projeyi kaynak kodundan derlemek veya yerel ortamda test etmek isterseniz lütfen [CONTRIBUTING.md](CONTRIBUTING.md) kılavuzunu inceleyin.
