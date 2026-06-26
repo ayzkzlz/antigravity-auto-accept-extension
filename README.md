@@ -1,4 +1,4 @@
-# Antigravity Auto-Accept Plugin
+# Antigravity Auto-Accept Extension
 
 [English](#english) | [Türkçe](#türkçe)
 

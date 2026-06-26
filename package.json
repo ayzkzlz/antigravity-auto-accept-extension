@@ -1,8 +1,12 @@
 {
-  "name": "antigravity-auto-accept",
+  "name": "antigravity-auto-accept-extension",
   "displayName": "Antigravity Auto-Accept",
-  "description": "An auto-accept plugin with a management panel for Antigravity IDE",
+  "description": "An auto-accept extension with a management panel for Antigravity IDE",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ayzkzlz/antigravity-auto-accept-extension"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { AdminPanel } from './panels/AdminPanel';
 import { CdpClient } from './cdpClient';
+import { AutoUpdater } from './autoUpdater';
 
 let statusBarItem: vscode.StatusBarItem;
 let cdpClient: CdpClient;
@@ -10,6 +11,8 @@ let extensionContext: vscode.ExtensionContext;
 export function activate(context: vscode.ExtensionContext) {
   extensionContext = context;
   console.log('Antigravity Auto-Accept is now active!');
+
+  AutoUpdater.startPolling(context);
 
   // Open Panel Command
   let openPanelDisposable = vscode.commands.registerCommand('antigravity-auto-accept.openAdminPanel', () => {
@@ -86,6 +89,7 @@ function updateStatusBarItem() {
 }
 
 export function deactivate() {
+    AutoUpdater.stopPolling();
     if (cdpClient) {
         cdpClient.stop();
     }
