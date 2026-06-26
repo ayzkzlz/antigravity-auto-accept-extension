@@ -26,17 +26,17 @@ if [ -z "$VSIX_FILE" ]; then
 fi
 
 # Release klasörü oluştur
-RELEASE_DIR="Antigravity-AutoAccept-Installer"
+RELEASE_DIR="antigravity-auto-accept-installer"
 rm -rf "$RELEASE_DIR"
 mkdir -p "$RELEASE_DIR"
 
 # Dosyaları kopyala
 cp "$VSIX_FILE" "$RELEASE_DIR/antigravity-auto-accept-1.0.0.vsix"
-cp setup-mac.sh "$RELEASE_DIR/"
-cp setup-windows.ps1 "$RELEASE_DIR/"
+cp setup-mac.command "$RELEASE_DIR/"
+cp setup-windows.cmd "$RELEASE_DIR/"
 
 # Çalıştırılabilir izinleri ayarla
-chmod +x "$RELEASE_DIR/setup-mac.sh"
+chmod +x "$RELEASE_DIR/setup-mac.command"
 
 # Zip oluştur
 echo "Zipping the release package..."

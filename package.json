@@ -3,6 +3,7 @@
   "displayName": "Antigravity Auto-Accept",
   "description": "An auto-accept extension with a management panel for Antigravity IDE",
   "version": "1.0.0",
+  "publisher": "ayaztech",
   "repository": {
     "type": "git",
     "url": "https://github.com/ayzkzlz/antigravity-auto-accept-extension"

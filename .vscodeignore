@@ -1,9 +1,16 @@
 .vscode/**
 .vscode-test/**
 src/**
+!src/webview/**
 .gitignore
 .yarnrc
 webpack.config.js
 webpack.config.ts
 **/*.map
 **/*.ts
+build-release.sh
+setup-mac.command
+setup-windows.cmd
+*.zip
+*.vsix
+CONTRIBUTING.md

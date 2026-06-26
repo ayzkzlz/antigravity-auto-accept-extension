@@ -16,35 +16,27 @@ Welcome to the **Antigravity Auto-Accept** extension for Antigravity IDE (VS Cod
 
 ### Installation
 
-To function properly, this extension requires Antigravity IDE to run with the Chrome DevTools Protocol enabled (`--remote-debugging-port=9000`). We provide a standalone installer to automate this process for you.
+To function properly, this extension requires Antigravity IDE to run with the Chrome DevTools Protocol enabled (`--remote-debugging-port=9000`).
 
-#### Step 1: Download the Installer
+#### Step 1: Install the Extension
 1. Go to the [Releases](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) page on GitHub.
-2. Download the latest **`Antigravity-AutoAccept-Installer.zip`** file.
-3. Extract the downloaded `.zip` file into a folder (e.g., your Downloads or Desktop folder).
+2. Download the latest **`antigravity-auto-accept-installer.zip`** file and extract it.
+3. Open Antigravity IDE.
+4. Go to the **Extensions** view (`Cmd+Shift+X` or `Ctrl+Shift+X`).
+5. Click the `...` menu at the top right and select **Install from VSIX...**
+6. Select the `antigravity-auto-accept-1.0.0.vsix` file from the extracted folder.
 
-#### Step 2: Run the Setup Script
-The folder contains setup scripts for both macOS and Windows. These scripts will automatically install the extension into your IDE and create a dedicated desktop shortcut.
+#### Step 2: Create the Desktop Shortcut
+To make sure Antigravity IDE always launches with the correct port, we provide simple click-and-run shortcut generators.
 
 **🍎 For macOS Users:**
-1. Open the **Terminal** application.
-2. Use the `cd` command to navigate to the folder where you extracted the zip file. For example:
-   ```bash
-   cd ~/Downloads/Antigravity-AutoAccept-Installer
-   ```
-3. Run the setup script using the following command:
-   ```bash
-   ./setup-mac.sh
-   ```
-   *(If you get a permission denied error, run `chmod +x setup-mac.sh` first).*
-4. Once completed, you will see a new application named **`Antigravity with Auto Accept.app`** on your Desktop. You can drag this application to your Dock for easy access.
+1. In the extracted folder, double-click the **`setup-mac.command`** file.
+2. A new application named **`Antigravity with Auto Accept.app`** will be created on your Desktop.
+3. *(If macOS prevents it from running, right-click the file and select "Open").*
 
 **🪟 For Windows Users:**
-1. Open the extracted `Antigravity-AutoAccept-Installer` folder in File Explorer.
-2. Locate the file named **`setup-windows.ps1`**.
-3. Right-click on the file and select **Run with PowerShell**.
-4. *(Note: If Windows prompts a security warning or asks about Execution Policies, type `Y` and press Enter to allow the script to run).*
-5. Once completed, a new shortcut named **`Antigravity with Auto Accept.lnk`** will appear on your Desktop.
+1. In the extracted folder, double-click the **`setup-windows.cmd`** file.
+2. A new shortcut named **`Antigravity with Auto Accept.lnk`** will be created on your Desktop.
 
 ### Usage
 1. **Always launch Antigravity IDE via your newly created shortcut.**
@@ -68,35 +60,27 @@ Antigravity IDE (VS Code) için geliştirilmiş **Antigravity Auto-Accept** ekle
 
 ### Kurulum
 
-Bu eklentinin çalışabilmesi için Antigravity IDE'nin Chrome DevTools Protocol (`--remote-debugging-port=9000`) parametresi ile başlatılması zorunludur. İşinizi kolaylaştırmak adına tüm bu süreci otomatikleştiren bağımsız bir kurulum paketi sunuyoruz.
+Bu eklentinin çalışabilmesi için Antigravity IDE'nin Chrome DevTools Protocol (`--remote-debugging-port=9000`) parametresi ile başlatılması zorunludur.
 
-#### Adım 1: Kurulum Paketini İndirin
+#### Adım 1: Eklentiyi Kurun
 1. GitHub üzerindeki [Releases (Sürümler)](https://github.com/ayzkzlz/antigravity-auto-accept-extension/releases) sayfasına gidin.
-2. En güncel **`Antigravity-AutoAccept-Installer.zip`** dosyasını indirin.
-3. İndirdiğiniz bu `.zip` dosyasını bilgisayarınızda bir klasöre (Örn: İndirilenler veya Masaüstü) çıkartın.
+2. En güncel **`antigravity-auto-accept-installer.zip`** dosyasını indirin ve bir klasöre çıkartın.
+3. Antigravity IDE'yi açın.
+4. **Eklentiler (Extensions)** sekmesine gidin (`Cmd+Shift+X` veya `Ctrl+Shift+X`).
+5. Sağ üstteki `...` (üç nokta) menüsüne tıklayın ve **VSIX'ten Yükle... (Install from VSIX...)** seçeneğini seçin.
+6. Zip'ten çıkardığınız klasördeki `antigravity-auto-accept-1.0.0.vsix` dosyasını seçin.
 
-#### Adım 2: Kurulum Betiğini (Script) Çalıştırın
-Çıkarttığınız klasörün içinde hem macOS hem de Windows için kurulum betikleri (script) bulunur. Bu betikler eklentiyi IDE'nize otomatik olarak kuracak ve masaüstünüze özel bir kısayol bırakacaktır.
+#### Adım 2: Masaüstü Kısayolunu Oluşturun
+IDE'nin her zaman doğru portla açıldığından emin olmak için size tek tıklamayla çalışan kısayol oluşturucular sunuyoruz.
 
 **🍎 macOS Kullanıcıları İçin:**
-1. Mac'inizde **Terminal** uygulamasını açın.
-2. `cd` komutunu kullanarak zip'ten çıkardığınız klasörün içine gidin. Örneğin:
-   ```bash
-   cd ~/Downloads/Antigravity-AutoAccept-Installer
-   ```
-3. Aşağıdaki komutu yazarak kurulum betiğini çalıştırın:
-   ```bash
-   ./setup-mac.sh
-   ```
-   *(Eğer "Permission denied" hatası alırsanız, önce `chmod +x setup-mac.sh` yazıp Enter'a basın).*
-4. Kurulum saniyeler içinde bitecek ve masaüstünüzde **`Antigravity with Auto Accept.app`** isminde yeni bir uygulama oluşacaktır. İsterseniz kolay erişim için bu simgeyi Dock'unuza sürükleyebilirsiniz.
+1. Zip'ten çıkardığınız klasörün içindeki **`setup-mac.command`** dosyasına çift tıklayın.
+2. Masaüstünüzde **`Antigravity with Auto Accept.app`** isminde yeni bir uygulama oluşacaktır.
+3. *(Eğer macOS güvenlik nedeniyle çalıştırmanızı engellerse, dosyaya sağ tıklayıp "Aç" seçeneğini seçin).*
 
 **🪟 Windows Kullanıcıları İçin:**
-1. Zip'ten çıkardığınız `Antigravity-AutoAccept-Installer` klasörünü Dosya Gezgini'nde açın.
-2. Klasör içindeki **`setup-windows.ps1`** dosyasını bulun.
-3. Bu dosyaya sağ tıklayın ve **"PowerShell ile Çalıştır" (Run with PowerShell)** seçeneğine tıklayın.
-4. *(Not: Eğer Windows güvenlik uyarısı verir veya "Execution Policy" ile ilgili bir soru sorarsa, `Y` tuşuna basıp Enter'a basarak scriptin çalışmasına izin verin).*
-5. Kurulum saniyeler içinde bitecek ve masaüstünüzde **`Antigravity with Auto Accept.lnk`** isminde yeni bir kısayol belirecektir.
+1. Zip'ten çıkardığınız klasörün içindeki **`setup-windows.cmd`** dosyasına çift tıklayın.
+2. Masaüstünüzde **`Antigravity with Auto Accept.lnk`** isminde yeni bir kısayol oluşacaktır.
 
 ### Kullanım
 1. **Eklentiyi kullanabilmek için Antigravity IDE'yi HER ZAMAN masaüstündeki bu yeni kısayoldan başlatın.**

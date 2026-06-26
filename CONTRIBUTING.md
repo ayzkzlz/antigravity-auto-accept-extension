@@ -39,7 +39,7 @@ Before you begin, ensure you have the following installed:
    ```bash
    ./build-release.sh
    ```
-   This automates the compilation, `.vsix` generation, and packaging of the setup scripts into `Antigravity-AutoAccept-Installer.zip`.
+   This automates the compilation, `.vsix` generation, and packaging of the setup scripts into `antigravity-auto-accept-installer.zip`.
 
 ### Testing the Extension
 
@@ -90,7 +90,7 @@ Başlamadan önce sisteminizde şunların yüklü olduğundan emin olun:
    *Alternatif olarak, kodunuzu kaydettiğinizde otomatik derlenmesi için `npm run watch` komutunu kullanabilirsiniz.*
 
 4. **Nihai Paketi (Release) Oluşturun:**
-   Kullanıcılara dağıtılacak `Antigravity-AutoAccept-Installer.zip` paketini oluşturmak için derleme betiğini çalıştırmanız yeterlidir:
+   Kullanıcılara dağıtılacak `antigravity-auto-accept-installer.zip` paketini oluşturmak için derleme betiğini çalıştırmanız yeterlidir:
    ```bash
    ./build-release.sh
    ```
