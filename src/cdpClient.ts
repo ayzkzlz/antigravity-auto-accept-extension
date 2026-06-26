@@ -16,7 +16,7 @@ export class CdpClient {
             this.fetchTargets();
         }, 3000);
         
-        vscode.window.showInformationMessage('Auto-Accept (CDP 9000) başlatıldı. Bekleniyor...');
+        vscode.window.showInformationMessage('Auto-Accept started.');
         this.fetchTargets();
     }
 
@@ -49,7 +49,7 @@ export class CdpClient {
         });
         this.activeSockets.clear();
 
-        vscode.window.showInformationMessage('Auto-Accept durduruldu.');
+        vscode.window.showInformationMessage('Auto-Accept stopped.');
     }
 
     private hasShownError = false;
@@ -64,8 +64,10 @@ export class CdpClient {
                     targets.forEach((target: any) => {
                         // type kontrolünü genişletiyoruz (webview vs olabilir)
                         if (!this.activeSockets.has(target.id) && target.webSocketDebuggerUrl) {
-                            vscode.window.showInformationMessage(`CDP: Yeni hedefe bağlanıldı -> ${target.type} (${target.title || 'İsimsiz'})`);
-                            this.connectToTarget(target);
+                            if (target.type === 'page' || target.type === 'iframe' || target.url.includes('webview')) {
+                                vscode.window.showInformationMessage(`CDP: Connected to new target -> ${target.type} (${target.title || 'Untitled'})`);
+                                this.connectToTarget(target);
+                            }
                         }
                     });
                 } catch (e) {
@@ -76,7 +78,7 @@ export class CdpClient {
 
         req.on('error', (e) => {
             if (!this.hasShownError) {
-                vscode.window.showErrorMessage(`CDP Kapalı: Lütfen Auto-Accept eklentisini kullanabilmek için IDE'yi 'Antigravity with Auto Accept' kısayolundan başlatın.`);
+                vscode.window.showErrorMessage(`CDP Closed: Port 9000 is not open. Auto-Accept cannot connect.`);
                 this.hasShownError = true;
             }
         });

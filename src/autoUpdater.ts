@@ -104,11 +104,11 @@ export class AutoUpdater {
             
             // Kullanıcıya sor
             const selection = await vscode.window.showInformationMessage(
-                `Auto-Accept eklentisinin yeni bir sürümü (v${version}) hazır. Yüklemek ve IDE'yi yeniden başlatmak ister misiniz?`,
-                'Güncelle'
+                `A new version of Auto-Accept (v${version}) is available. Would you like to install it and reload the IDE?`,
+                'Update'
             );
 
-            if (selection === 'Güncelle') {
+            if (selection === 'Update') {
                 // Kurulumu başlat
                 await vscode.commands.executeCommand('workbench.extensions.installExtension', vscode.Uri.file(destPath));
                 
